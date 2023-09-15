@@ -25,6 +25,7 @@ const DetailImage: React.FC<DetailImageProps> = ({ thumbnail, images }) => {
   };
 
   const imageRef = useRef<HTMLImageElement | null>(null);
+
   const handleChangeProductImage = (imgSource: string, _isThumbnail: boolean) => {
     if (imageRef && imageRef.current) {
         imageRef.current.src = imgSource;
@@ -59,7 +60,9 @@ const DetailImage: React.FC<DetailImageProps> = ({ thumbnail, images }) => {
         </div>
         <div className="mt-3 flex flex-wrap justify-center items-center gap-2">
             <div
-                onClick={() => handleChangeProductImage(thumbnail, true)} className="w-14 rounded aspect-square cursor-pointer"
+                onClick={() => handleChangeProductImage(thumbnail, true)}
+                onMouseEnter={() => handleChangeProductImage(thumbnail, true)}
+                className="w-14 rounded aspect-square cursor-pointer"
             >
                 <img
                     src={thumbnail}
@@ -71,6 +74,7 @@ const DetailImage: React.FC<DetailImageProps> = ({ thumbnail, images }) => {
                 return (
                     <div
                         onClick={() => handleChangeProductImage(img, false)}
+                        onMouseEnter={() => handleChangeProductImage(img, false)}
                         key={(index += 1)}
                         className={`w-14 rounded aspect-square cursor-pointer border-2 overflow-hidden ${
                             (!isThumbnail && thisImageIsShowed(currentImg, img))
