@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import products from '../dummies/products';
 import GradientBadge from '../components/GradientBadge';
 import TableRow from '../components/TableRow';
+import BackButton from '../components/BackButton';
 
 const DetailProduct: React.FC = () => {
   const { id } = useParams();
@@ -25,10 +26,13 @@ const DetailProduct: React.FC = () => {
   
   return (
     <section className='min-h-screen md:p-24 p-5'>
+        <div>
+            <BackButton to='/#products' />
+        </div>
         <div className="grid md:grid-cols-2 gap-8">
             <div>
                 <div className='rounded overflow-hidden'>
-                    <img ref={imageRef} src={filteredProducts?.thumbnail} className='w-full object-cover h-[25rem]' alt="" />
+                    <img ref={imageRef} src={filteredProducts?.thumbnail} className='w-full object-cover h-[25rem] transition-all ease duration-300' alt="" />
                 </div>
                 <div className="mt-3 flex flex-wrap justify-center items-center gap-2">
                     <div
