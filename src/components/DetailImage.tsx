@@ -12,7 +12,7 @@ const DetailImage: React.FC<DetailImageProps> = ({ thumbnail, images }) => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   // eslint-disable-next-line no-unused-vars
-  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseEnter = () => {
     setIsZoomed(true);
   };
 
