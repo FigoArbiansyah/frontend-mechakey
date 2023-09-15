@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import products from '../dummies/products';
 import GradientBadge from '../components/GradientBadge';
 import TableRow from '../components/TableRow';
