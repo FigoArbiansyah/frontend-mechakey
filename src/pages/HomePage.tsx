@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Jumbotron from '../components/Jumbotron';
 import products from '../dummies/products';
 import Card from '../components/Card';
 import FloatingMenu from '../components/FloatingMenu';
 
 const HomePage: React.FC = () => {
+  const [reload, setReload] = useState<boolean>(false);
+  useEffect(() => {
+    setReload(r => !r);
+  }, []);
   return (
     <main>
-        <FloatingMenu />
+        <FloatingMenu reload={reload} />
         <section>
             <Jumbotron
                 title='MechaKey'

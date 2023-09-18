@@ -16,6 +16,8 @@ const DetailProduct: React.FC = () => {
   const { id } = useParams();
   const [count, setCount] = useState<number>(1);
   const filteredProducts = products.filter((product) => Number(product?.id) === Number(id))[0];
+  const [reload, setReload] = useState<boolean>(false);
+
   const counterForCheckout = (_isAdding: boolean) => {
     if (_isAdding) {
         if (count < filteredProducts?.stock) {
@@ -51,11 +53,12 @@ const DetailProduct: React.FC = () => {
     currentCartItem.push(itemForCart);
     localStorage.setItem('cart_item', JSON.stringify(currentCartItem));
     setCount(1);
+    setReload(r => !r);
   };
   
   return (
     <section className='min-h-screen md:p-24 p-5'>
-        <FloatingMenu />
+        <FloatingMenu reload={reload} />
         <div>
             <BackButton to='/#products' />
         </div>
