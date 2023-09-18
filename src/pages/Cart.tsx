@@ -8,15 +8,15 @@ interface ProductItem extends ProductProps {
 
 const Cart: React.FC = () => {
   const [cartItems, setCartItems] = useState<ProductItem[]>([]);
-  const [checkedItems, setCheckedItems] = useState<number[]>([]);
-  const [loading, setLoading] = useState(false);
+//   const [checkedItems, setCheckedItems] = useState<number[]>([]);
+//   const [loading, setLoading] = useState(false);
 
-  const handleCheck = (item_id: number) => {
-    const isIncluded = checkedItems?.includes(item_id);
-    if (isIncluded) {
-        const newCheckedData = checkedItems?.splice(checkedItems?.indexOf(item_id), 1);
-    }
-  };
+//   const handleCheck = (item_id: number) => {
+//     const isIncluded = checkedItems?.includes(item_id);
+//     if (isIncluded) {
+//         const newCheckedData = checkedItems?.splice(checkedItems?.indexOf(item_id), 1);
+//     }
+//   };
 
   const handleCounter = (id: number, isPlus: boolean) => {
     if (isPlus) {
@@ -53,7 +53,7 @@ const Cart: React.FC = () => {
   useEffect(() => {
     const cart_item = localStorage.getItem('cart_item');
     typeof (cart_item) === 'string' && setCartItems(JSON.parse(cart_item));
-  }, [loading]);
+  }, []);
   return (
     <main>
         <section className='min-h-screen md:p-20 p-5'>

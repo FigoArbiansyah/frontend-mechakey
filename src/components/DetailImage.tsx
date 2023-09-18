@@ -6,7 +6,7 @@ interface DetailImageProps {
     sticky?: boolean;
 }
 
-const DetailImage: React.FC<DetailImageProps> = ({ thumbnail, images, sticky }) => {
+const DetailImage: React.FC<DetailImageProps> = ({ thumbnail, images }) => {
   const [currentImg, setCurrentImg] = useState<string>('');
   const [isThumbnail, setIsThumbnail] = useState<boolean>(true);
   const [isZoomed, setIsZoomed] = useState(false);
