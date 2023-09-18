@@ -54,7 +54,7 @@ const Cart: React.FC = () => {
                 const indexOf = cartItems?.indexOf(item);
                 cartItems.splice(indexOf, 1);
                 cartItems.unshift(newData);
-                handleCheck(item?.id);
+                // handleCheck(item?.id);
             }
         });
     } else {
@@ -67,7 +67,7 @@ const Cart: React.FC = () => {
                 const indexOf = cartItems?.indexOf(item);
                 cartItems.splice(indexOf, 1);
                 cartItems.unshift(newData);
-                handleCheck(item?.id);
+                // handleCheck(item?.id);
             }
         });
     }
