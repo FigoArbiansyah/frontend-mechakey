@@ -5,6 +5,12 @@ import GradientBadge from '../components/GradientBadge';
 import TableRow from '../components/TableRow';
 import BackButton from '../components/BackButton';
 import DetailImage from '../components/DetailImage';
+import FloatingMenu from '../components/FloatingMenu';
+import ProductProps from '../models/ProductProps';
+
+interface ProductItem extends ProductProps {
+    count: number;
+}
 
 const DetailProduct: React.FC = () => {
   const { id } = useParams();
@@ -21,13 +27,39 @@ const DetailProduct: React.FC = () => {
         }
     }
   };
+  const addToCart = (_count: number) => {
+    let currentCartItem = [];
+    const cart_item = localStorage.getItem('cart_item');
+    if (cart_item && cart_item !== null && typeof (cart_item) === 'string') {
+        currentCartItem = JSON.parse(cart_item);
+    }
+    let itemForCart = {
+        ...filteredProducts,
+       count: _count
+    };
+    const cekItemIsExist: ProductItem[] = currentCartItem?.filter((_item: ProductItem) => (
+        _item.id == filteredProducts.id
+    ));
+    if (cekItemIsExist?.length >= 1) {
+        itemForCart = {
+           ...filteredProducts,
+           count: cekItemIsExist[0].count + _count
+        };
+        const indexOfItem = currentCartItem.indexOf(cekItemIsExist);
+        currentCartItem.splice(indexOfItem, 1);
+    }
+    currentCartItem.push(itemForCart);
+    localStorage.setItem('cart_item', JSON.stringify(currentCartItem));
+    setCount(1);
+  };
   
   return (
     <section className='min-h-screen md:p-24 p-5'>
+        <FloatingMenu />
         <div>
             <BackButton to='/#products' />
         </div>
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 relative">
             <DetailImage
                 thumbnail={filteredProducts?.thumbnail}
                 images={filteredProducts?.images}
@@ -94,6 +126,7 @@ const DetailProduct: React.FC = () => {
                         </div>
                         <div className="mt-6 grid grid-cols-2 gap-5">
                             <button
+                              onClick={() => addToCart(count)}
                               className='p-2 border border-rose-500 text-rose-500 hover:bg-rose-500 hover:text-white transition-all ease'
                             >Add to Cart</button>
                             <button

@@ -2,10 +2,12 @@ import React from 'react';
 import Jumbotron from '../components/Jumbotron';
 import products from '../dummies/products';
 import Card from '../components/Card';
+import FloatingMenu from '../components/FloatingMenu';
 
 const HomePage: React.FC = () => {
   return (
     <main>
+        <FloatingMenu />
         <section>
             <Jumbotron
                 title='MechaKey'
@@ -21,7 +23,7 @@ const HomePage: React.FC = () => {
             <div className="mt-10 grid md:grid-cols-4 gap-5">
                 {products?.map(product => {
                     return (
-                        <Card item={product} />
+                        <Card key={product.id} item={product} />
                     );
                 })}
             </div>
