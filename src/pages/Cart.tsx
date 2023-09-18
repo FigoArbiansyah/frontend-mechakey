@@ -24,7 +24,7 @@ const Cart: React.FC = () => {
             if (item?.id === id) {
                 const newData = {
                     ...item,
-                    count: item?.count + 1,
+                    count: item?.count >= item?.stock ? item?.count : item?.count + 1,
                 };
                 const indexOf = cartItems?.indexOf(item);
                 cartItems.splice(indexOf, 1);
@@ -36,7 +36,7 @@ const Cart: React.FC = () => {
             if (item?.id === id) {
                 const newData = {
                     ...item,
-                    count: item?.count - 1,
+                    count: item?.count <= 1 ? item?.count : item?.count - 1,
                 };
                 const indexOf = cartItems?.indexOf(item);
                 cartItems.splice(indexOf, 1);
