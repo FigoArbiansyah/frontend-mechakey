@@ -108,6 +108,7 @@ const Cart: React.FC = () => {
   useEffect(() => {
     const cart_item = localStorage.getItem('cart_item');
     typeof (cart_item) === 'string' && setCartItems(JSON.parse(cart_item));
+    setCheckedItems([]);
   }, []);
 
   const renderEmpty = () => {
