@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 import products from '../dummies/products';
 import GradientBadge from '../components/GradientBadge';
 import TableRow from '../components/TableRow';
@@ -17,6 +18,7 @@ const DetailProduct: React.FC = () => {
   const [count, setCount] = useState<number>(1);
   const filteredProducts = products.filter((product) => Number(product?.id) === Number(id))[0];
   const [reload, setReload] = useState<boolean>(false);
+  const showToast = (message: string) => toast(message);
 
   const counterForCheckout = (_isAdding: boolean) => {
     if (_isAdding) {
@@ -54,11 +56,13 @@ const DetailProduct: React.FC = () => {
     localStorage.setItem('cart_item', JSON.stringify(currentCartItem));
     setCount(1);
     setReload(r => !r);
+    showToast('Successfully add items to the cart');
   };
   
   return (
     <section className='min-h-screen md:p-24 p-5'>
         <FloatingMenu reload={reload} />
+        <ToastContainer />
         <div>
             <BackButton to='/#products' />
         </div>

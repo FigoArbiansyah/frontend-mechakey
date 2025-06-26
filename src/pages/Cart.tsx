@@ -41,8 +41,6 @@ const Cart: React.FC = () => {
     }
   };
 
-  console.log(totalAmount);
-
   const handleCounter = (id: number, isPlus: boolean) => {
     if (isPlus) {
         cartItems.map(item => {
