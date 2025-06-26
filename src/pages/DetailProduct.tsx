@@ -39,15 +39,15 @@ const DetailProduct: React.FC = () => {
         ...filteredProducts,
        count: _count
     };
-    const cekItemIsExist: ProductItem[] = currentCartItem?.filter((_item: ProductItem) => (
+    const checkItemIsExist: ProductItem[] = currentCartItem?.filter((_item: ProductItem) => (
         _item.id == filteredProducts.id
     ));
-    if (cekItemIsExist?.length >= 1) {
+    if (checkItemIsExist?.length >= 1) {
         itemForCart = {
            ...filteredProducts,
-           count: cekItemIsExist[0].count + _count
+           count: checkItemIsExist[0].count + _count
         };
-        const indexOfItem = currentCartItem.indexOf(cekItemIsExist);
+        const indexOfItem = currentCartItem.indexOf(checkItemIsExist);
         currentCartItem.splice(indexOfItem, 1);
     }
     currentCartItem.push(itemForCart);
